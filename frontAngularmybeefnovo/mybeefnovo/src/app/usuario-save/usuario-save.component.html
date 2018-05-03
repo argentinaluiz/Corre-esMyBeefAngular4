@@ -1,0 +1,19 @@
+<form>
+  <h3>{{!usuario.id?'Criar Usuario':'Editar Receita'}}</h3>
+</form>
+<div class="row">
+  <!--<h3 *ngIf="!post.id; else h3_edit">Criar Categoria</h3>
+  <ng-template #h3_edit>
+    <h3>Editar Categorias</h3>
+  </ng-template>-->
+  <form class="form-horizontal" (submit)="save()">
+    <div class="form-group">
+      <label for="usuario" class="control-label">Usuario</label>
+      <input type="text" class="form-control" id="usuario" name="usuario" [(ngModel)]="usuario.nome">
+    </div>
+
+    <app-button type="submit" color="primary">
+      {{!usuario.id?'Criar':'Editar'}}
+    </app-button>
+  </form>
+</div>

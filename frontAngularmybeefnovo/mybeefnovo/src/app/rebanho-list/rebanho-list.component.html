@@ -1,0 +1,68 @@
+<div class="row">
+  <h3>Listagem de Rebanhos</h3>
+  <div class="col-md-12">
+    <app-button color="primary" routerLink="/rebanho/create">
+      <app-glyph icon="plus"></app-glyph> Criar
+    </app-button>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="col-md-12" *ngIf="message">
+    <app-alert [close]="true" [timeout]="4000">{{message}}</app-alert>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Ano</th>
+      <th>Propriedade</th>
+      <th>Categoria Animal</th>
+      <th>Quantidade estocada</th>
+      <th>Peso estocado</th>
+      <th>Quantidade Vendida</th>
+      <th>Peso Vendido</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let rebanhos of rebanho; let i = index">
+      <td>{{rebanhos.id}}</td>
+      <td>{{rebanhos.ano}}</td>
+      <td>{{rebanhos.propriedade}}</td>
+      <td>{{rebanhos.categoriaanimal}}</td>
+      <td>{{rebanhos.qtdestocada}}</td>
+      <td>{{rebanhos.pesoestocado}}</td>
+      <td>{{rebanhos.qtdvendida}}</td>
+      <td>{{rebanhos.pesovendido}}</td>
+      <td>
+        <a [routerLink]="['/rebanho', rebanho, 'edit']">
+          <app-glyph icon="pencil"></app-glyph>
+          Editar
+        </a> |
+        <a href="javascript:void(0)" (click)="openModal(rebanho)">
+          <app-glyph icon="trash"></app-glyph>
+          Excluir
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-modal>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Mensagem de confirmação</h4>
+    </div>
+    <div class="modal-body" *ngIf="rebanhoDelete">
+      <p>Deseja excluir esta Categoria<strong>{{rebanhoDelete.categoriaanimal}}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" (click)="destroy()">Deletar</button>
+    </div>
+  </app-modal>
+</div>

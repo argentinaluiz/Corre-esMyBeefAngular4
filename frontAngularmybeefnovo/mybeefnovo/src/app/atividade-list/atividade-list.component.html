@@ -1,0 +1,58 @@
+<div class="row">
+  <h3>Listagem de Atividades</h3>
+  <div class="col-md-12">
+    <app-button color="primary" routerLink="/atividade/create">
+      <app-glyph icon="plus"></app-glyph> Criar
+    </app-button>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="col-md-12" *ngIf="message">
+    <app-alert [close]="true" [timeout]="4000">{{message}}</app-alert>
+  </div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Código</th>
+    <th>Descrição</th>
+    <th>Propriedade</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let atividade of atividades; let i = index">
+    <td>{{atividade.id}}</td>
+    <td>{{atividade.descricao}}</td>
+    <td>{{atividade.propriedade}}</td>
+    <td>
+      <a [routerLink]="['/atividade', atividade, 'edit']">
+        <app-glyph icon="pencil"></app-glyph>
+        Editar
+      </a> |
+      <a href="javascript:void(0)" (click)="openModal(atividade)">
+        <app-glyph icon="trash"></app-glyph>
+        Excluir
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+  <app-modal>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Mensagem de confirmação</h4>
+    </div>
+    <div class="modal-body" *ngIf="atividadeDelete">
+      <p>Deseja excluir esta Atividade<strong>{{atividadeDelete.descricao}}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" (click)="destroy()">Deletar</button>
+    </div>
+  </app-modal>
+</div>

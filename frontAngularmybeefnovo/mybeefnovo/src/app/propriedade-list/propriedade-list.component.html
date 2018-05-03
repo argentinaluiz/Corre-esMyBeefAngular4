@@ -1,0 +1,72 @@
+<div class="row">
+  <h3>Listagem de Propriedades</h3>
+  <div class="col-md-12">
+    <app-button color="primary" routerLink="/propriedade/create">
+      <app-glyph icon="plus"></app-glyph> Criar
+    </app-button>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="col-md-12" *ngIf="message">
+    <app-alert [close]="true" [timeout]="4000">{{message}}</app-alert>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Categoria</th>
+      <th>Usuario</th>
+      <th>Cidade</th>
+      <th>Pais</th>
+      <th>Data</th>
+      <th>Nome</th>
+      <th>Nro Cadastro</th>
+      <th>Tamanho</th>
+      <th>Localidade</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let propriedade of propriedades; let i = index">
+      <td>{{propriedade.id}}</td>
+      <td>{{propriedade.categoria}}</td>
+      <td>{{propriedade.usuario}}</td>
+      <td>{{propriedade.cidade}}</td>
+      <td>{{propriedade.pais}}</td>
+      <td>{{propriedade.data}}</td>
+      <td>{{propriedade.nome}}</td>
+      <td>{{propriedade.nro_car}}</td>
+      <td>{{propriedade.tamanho}}</td>
+      <td>{{propriedade.localidade}}</td>
+      <td>
+        <a [routerLink]="['/propriedade', propriedade, 'edit']">
+          <app-glyph icon="pencil"></app-glyph>
+          Editar
+        </a> |
+        <a href="javascript:void(0)" (click)="openModal(propriedade)">
+          <app-glyph icon="trash"></app-glyph>
+          Excluir
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-modal>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Mensagem de confirmação</h4>
+    </div>
+    <div class="modal-body" *ngIf="propriedadeDelete">
+      <p>Deseja excluir esta propriedade<strong>{{propriedadeDelete.nome}}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" (click)="destroy()">Deletar</button>
+    </div>
+  </app-modal>
+</div>

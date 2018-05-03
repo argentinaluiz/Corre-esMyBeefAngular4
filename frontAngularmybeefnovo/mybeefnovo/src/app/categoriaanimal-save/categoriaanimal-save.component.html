@@ -1,0 +1,22 @@
+<div class="mx-auto" style="width: 200px;">
+
+<form>
+   <h3>{{!categoriaanimal.id?'Criar Categoria':'Editar Categoria'}}</h3>
+</form>
+<div class="row">
+  <!--<h3 *ngIf="!post.id; else h3_edit">Criar Categoria</h3>
+  <ng-template #h3_edit>
+    <h3>Editar Categorias</h3>
+  </ng-template>-->
+  <form class="form-horizontal" (submit)="save()">
+    <div class="form-group">
+    <label for="nomecategoria" class="control-label">Nome</label>
+    <input type="text" class="form-control" id="nomecategoria" name="nome" [(ngModel)]="categoriaanimal.nome">
+    </div>
+
+    <app-button type="submit" color="primary">
+      {{!categoriaanimal.id?'Criar':'Editar'}}
+    </app-button>
+   </form>
+  </div>
+</div>

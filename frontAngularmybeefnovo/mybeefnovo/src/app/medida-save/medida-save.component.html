@@ -1,0 +1,19 @@
+<form>
+  <h3>{{!medida.id?'Criar nova medida':'Editar medida'}}</h3>
+</form>
+<div class="row">
+  <!--<h3 *ngIf="!post.id; else h3_edit">Criar Categoria</h3>
+  <ng-template #h3_edit>
+    <h3>Editar Categorias</h3>
+  </ng-template>-->
+  <form class="form-horizontal" (submit)="save()">
+    <div class="form-group">
+      <label for="medida" class="control-label">Medida</label>
+      <input type="text" class="form-control" id="medida" name="medida" [(ngModel)]="medida.tamanho">
+    </div>
+
+    <app-button type="submit" color="primary">
+      {{!medida.id?'Criar':'Editar'}}
+    </app-button>
+  </form>
+</div>

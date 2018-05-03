@@ -1,0 +1,64 @@
+<div class="row">
+  <h3>Listagem de Receitas</h3>
+  <div class="col-md-12">
+    <app-button color="primary" routerLink="/receita/create">
+      <app-glyph icon="plus"></app-glyph> Criar
+    </app-button>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div class="col-md-12" *ngIf="message">
+    <app-alert [close]="true" [timeout]="4000">{{message}}</app-alert>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Propriedade</th>
+      <th>Data</th>
+      <th>Quantidade</th>
+      <th>Peso</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let receitas of receita; let i = index">
+      <td>{{receitas.id}}</td>
+      <td>{{receitas.propriedade}}</td>
+      <td>{{receitas.data}}</td>
+      <td>{{receitas.quantidade}}</td>
+      <td>{{receitas.peso}}</td>
+      <td>{{receitas.preco}}</td>
+      <td>
+        <a [routerLink]="['/receita', receita, 'edit']">
+          <app-glyph icon="pencil"></app-glyph>
+          Editar
+        </a> |
+        <a href="javascript:void(0)" (click)="openModal(receita)">
+          <app-glyph icon="trash"></app-glyph>
+          Excluir
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-modal>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Mensagem de confirmação</h4>
+    </div>
+    <div class="modal-body" *ngIf="receitaDelete">
+      <p>Deseja excluir esta Categoria<strong>{{receitaDelete.propriedade}}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" (click)="destroy()">Deletar</button>
+    </div>
+  </app-modal>
+</div>

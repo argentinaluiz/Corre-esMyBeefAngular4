@@ -1,0 +1,43 @@
+<div class="mx-auto" style="width: 200px;">
+<form>
+  <h3>{{!custo.id?'Criar Custo':'Editar Custo'}}</h3>
+</form>
+<div class="row">
+  <!--<h3 *ngIf="!post.id; else h3_edit">Criar Categoria</h3>
+  <ng-template #h3_edit>
+    <h3>Editar Categorias</h3>
+  </ng-template>-->
+  <form class="form-horizontal" (submit)="save()">
+    <div class="form-group">
+      <label for="custo" class="control-label">Custo</label>
+      <input type="text" class="form-control" id="custo" name="nome" [(ngModel)]="custo.valor">
+    </div>
+
+
+    <label for="custo" class="control-label">Categoria</label>
+    <input type="text" class="form-control" id="categoriacusto" name="nome" [(ngModel)]="custo.categoriacusto">
+
+
+    <label for="custo" class="control-label">Data</label>
+    <input type="text" class="form-control" id="datacusto" name="nome" [(ngModel)]="custo.data">
+
+    <label for="custo" class="control-label">Valor</label>
+    <input type="text" class="form-control" id="valorcusto" name="nome" [(ngModel)]="custo.valor">
+
+
+    <label for="exampleFormControlSelect1">Propiedades:</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>Propriedade1</option>
+      <option>Propriedade2</option>
+      <option>Propriedade3</option>
+      <option>Propriedade4</option>
+      <option>Propriedade5</option>
+    </select>
+
+
+    <app-button type="submit" color="primary">
+      {{!custo.id?'Criar':'Editar'}}
+    </app-button>
+   </form>
+  </div>
+</div>
