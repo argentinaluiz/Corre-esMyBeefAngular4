@@ -12,14 +12,11 @@ import {MessageService} from "../services/message.service";
 export class CategoriaanimalListComponent implements OnInit {
 
 
-      categoria: Array<any> = [];
+      categoria = {};
       categoriaDelete = null;
       message = null;
       @ViewChild(ModalComponent)
       modal: ModalComponent;
-
-
-    Object = this.categoria;
 
 
   constructor(private categoriaService: CategoriaanimalService, private messageService:MessageService) {
@@ -66,6 +63,10 @@ export class CategoriaanimalListComponent implements OnInit {
           this.categoria.splice(index, 1);
           this.modal.close();
       });
+  }
+
+  categoriaKeys(){
+    return Object.keys(this.categoria)
   }
 
   openModal(categoria_animal){

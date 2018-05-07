@@ -22,7 +22,7 @@
     </thead>
     <tbody>
 
-    <tr *ngFor="let key of Object.keys(categoria)">
+    <tr *ngFor="let key of categoriaKeys()">
       <td>{{categoria[key].id}}</td>
       <td>{{categoria[key].nome}}</td>
       <td>
